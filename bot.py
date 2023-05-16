@@ -1,5 +1,5 @@
 from telegram import Bot
-from telegram.ext import Updater, CommandHandler, CallbackContext
+from telegram.ext import Updater, CommandHandler, CallbackContext, MessageHandler
 from telegram import Update
 from settings import settings
 import requests
@@ -45,7 +45,7 @@ def search(update: Update, context: CallbackContext):
 dispatcher = updater.dispatcher
 dispatcher.add_handler(CommandHandler('start', start))
 dispatcher.add_handler(CommandHandler('search', search))
-dispatcher.add_handler(CommandHandler(Filters.all, start))
+dispatcher.add_handler(MessageHandler(Filters.all, start))
 
 
 
@@ -55,4 +55,5 @@ dispatcher.add_handler(CommandHandler(Filters.all, start))
 
 
 updater.start_polling()
+
 updater.idle()
